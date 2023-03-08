@@ -64,6 +64,21 @@ local function toms(timestamp)
     return string.format("%.3f", timestamp)
 end
 
+local function prepare_header(source_path)
+  if string.find(source_path, "bilivideo") then
+    return "Referer:https://www.bilivideo.com/"
+  else
+    return ""
+  end
+end
+
+local function prepare_agent(source_path)
+  if string.find(source_path, "bilivideo") then
+    return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 "
+  else
+    return ""
+  end
+end
 ------------------------------------------------------------
 -- ffmpeg encoder
 
@@ -83,6 +98,8 @@ end
 ffmpeg.make_static_snapshot_args = function(source_path, output_path, timestamp)
     return ffmpeg.prepend {
         '-an',
+        '-headers', prepare_header(source_path),
+        '-user_agent', prepare_agent(source_path),
         '-ss', toms(timestamp),
         '-i', source_path,
         '-map_metadata', '-1',
@@ -155,6 +172,8 @@ ffmpeg.make_audio_args = function(source_path, output_path, start_timestamp, end
 
     local args = ffmpeg.prepend {
         '-vn',
+        '-headers', prepare_header(source_path),
+        '-user_agent', prepare_agent(source_path),
         '-ss', toms(start_timestamp),
         '-to', toms(end_timestamp),
         '-i', source_path,
