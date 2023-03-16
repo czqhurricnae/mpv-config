@@ -64,21 +64,6 @@ local function toms(timestamp)
     return string.format("%.3f", timestamp)
 end
 
-local function prepare_header(source_path)
-  if string.find(source_path, "bilivideo") then
-    return "Referer:https://www.bilivideo.com/"
-  else
-    return ""
-  end
-end
-
-local function prepare_agent(source_path)
-  if string.find(source_path, "bilivideo") then
-    return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 "
-  else
-    return ""
-  end
-end
 ------------------------------------------------------------
 -- ffmpeg encoder
 
@@ -96,10 +81,11 @@ ffmpeg.prepend = function(args)
 end
 
 ffmpeg.make_static_snapshot_args = function(source_path, output_path, timestamp)
+  if string.find(source_path, "bilivideo") then
     return ffmpeg.prepend {
         '-an',
-        '-headers', prepare_header(source_path),
-        '-user_agent', prepare_agent(source_path),
+        '-headers', 'Referer:https://www.bilivideo.com/',
+        '-user_agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 ',
         '-ss', toms(timestamp),
         '-i', source_path,
         '-map_metadata', '-1',
@@ -111,6 +97,21 @@ ffmpeg.make_static_snapshot_args = function(source_path, output_path, timestamp)
         '-vframes', '1',
         output_path
     }
+  else
+    return ffmpeg.prepend {
+      '-an',
+      '-ss', toms(timestamp),
+      '-i', source_path,
+      '-map_metadata', '-1',
+      '-vcodec', self.config.snapshot_codec,
+      '-lossless', '0',
+      '-compression_level', '6',
+      '-qscale:v', tostring(self.config.snapshot_quality),
+      '-vf', string.format('scale=%d:%d', self.config.snapshot_width, self.config.snapshot_height),
+      '-vframes', '1',
+      output_path
+    }
+  end
 end
 
 ffmpeg.animated_snapshot_filters = function()
@@ -170,10 +171,11 @@ ffmpeg.make_audio_args = function(source_path, output_path, start_timestamp, end
         audio_track_id = 'a'
     end
 
-    local args = ffmpeg.prepend {
+    if string.find(source_path, "bilivideo") then
+      local args = ffmpeg.prepend {
         '-vn',
-        '-headers', prepare_header(source_path),
-        '-user_agent', prepare_agent(source_path),
+        '-headers', 'Referer:https://www.bilivideo.com/',
+        '-user_agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 ',
         '-ss', toms(start_timestamp),
         '-to', toms(end_timestamp),
         '-i', source_path,
@@ -186,8 +188,28 @@ ffmpeg.make_audio_args = function(source_path, output_path, start_timestamp, end
         '-application', 'voip',
         '-b:a', tostring(self.config.audio_bitrate),
         output_path
-    }
-    return ffmpeg.append_user_audio_args(args)
+      }
+
+      return ffmpeg.append_user_audio_args(args)
+    else
+      local args = ffmpeg.prepend {
+        '-vn',
+        '-ss', toms(start_timestamp),
+        '-to', toms(end_timestamp),
+        '-i', source_path,
+        '-map_metadata', '-1',
+        '-map', string.format("0:%d", audio_track_id),
+        '-ac', '1',
+        '-codec:a', self.config.audio_codec,
+        '-vbr', 'on',
+        '-compression_level', '10',
+        '-application', 'voip',
+        '-b:a', tostring(self.config.audio_bitrate),
+        output_path
+      }
+
+      return ffmpeg.append_user_audio_args(args)
+    end
 end
 
 ------------------------------------------------------------
