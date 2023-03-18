@@ -191,6 +191,24 @@ ffmpeg.make_audio_args = function(source_path, output_path, start_timestamp, end
       }
 
       return ffmpeg.append_user_audio_args(args)
+    elseif type(audio_track_id) == "string" then
+      local args = ffmpeg.prepend {
+        '-vn',
+        '-ss', toms(start_timestamp),
+        '-to', toms(end_timestamp),
+        '-i', source_path,
+        '-map_metadata', '-1',
+        '-map', audio_track_id,
+        '-ac', '1',
+        '-codec:a', self.config.audio_codec,
+        '-vbr', 'on',
+        '-compression_level', '10',
+        '-application', 'voip',
+        '-b:a', tostring(self.config.audio_bitrate),
+        output_path
+      }
+
+      return ffmpeg.append_user_audio_args(args)
     else
       local args = ffmpeg.prepend {
         '-vn',
