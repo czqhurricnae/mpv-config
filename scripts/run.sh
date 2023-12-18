@@ -1,14 +1,20 @@
 cd "/Users/c/Downloads/mpv-www-gen"
 mkdir .cut_video
-ffmpeg -headers Referer:https://www.bilivideo.com/ -user_agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 "  -i https://cn-jsnt-ct-01-21.bilivideo.com/upgcxcode/02/30/1033043002/1033043002_nb3-1-16.mp4\?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=\&uipk=5\&nbs=1\&deadline=1678027957\&gen=playurlv2\&os=bcache\&oi=2015651036\&trid=0000279ff2ed8d634c00b7393d169bd3b769h\&mid=0\&platform=html5\&upsig=9a408e4dd76cf053e7240d285e8746df\&uparams=e\,uipk\,nbs\,deadline\,gen\,os\,oi\,trid\,mid\,platform\&cdnid=9929\&bvc=vod\&nettype=0\&bw=18865\&logo=80000000 -ss 1.61 -to 3.043 -q:a 0 -map a .cut_video/clip0.mp3
-echo "file 'clip0.mp3'" >>.cut_video/concat.txt
-ffmpeg -headers Referer:https://www.bilivideo.com/ -user_agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 "  -i https://cn-jsnt-ct-01-21.bilivideo.com/upgcxcode/02/30/1033043002/1033043002_nb3-1-16.mp4\?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=\&uipk=5\&nbs=1\&deadline=1678027957\&gen=playurlv2\&os=bcache\&oi=2015651036\&trid=0000279ff2ed8d634c00b7393d169bd3b769h\&mid=0\&platform=html5\&upsig=9a408e4dd76cf053e7240d285e8746df\&uparams=e\,uipk\,nbs\,deadline\,gen\,os\,oi\,trid\,mid\,platform\&cdnid=9929\&bvc=vod\&nettype=0\&bw=18865\&logo=80000000 -ss 16.376 -to 20.01 -q:a 0 -map a .cut_video/clip1.mp3
-echo "file 'clip1.mp3'" >>.cut_video/concat.txt
-ffmpeg -headers Referer:https://www.bilivideo.com/ -user_agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 "  -i https://cn-jsnt-ct-01-21.bilivideo.com/upgcxcode/02/30/1033043002/1033043002_nb3-1-16.mp4\?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=\&uipk=5\&nbs=1\&deadline=1678027957\&gen=playurlv2\&os=bcache\&oi=2015651036\&trid=0000279ff2ed8d634c00b7393d169bd3b769h\&mid=0\&platform=html5\&upsig=9a408e4dd76cf053e7240d285e8746df\&uparams=e\,uipk\,nbs\,deadline\,gen\,os\,oi\,trid\,mid\,platform\&cdnid=9929\&bvc=vod\&nettype=0\&bw=18865\&logo=80000000 -ss 29.51 -to 32.976 -q:a 0 -map a .cut_video/clip2.mp3
-echo "file 'clip2.mp3'" >>.cut_video/concat.txt
-ffmpeg -headers Referer:https://www.bilivideo.com/ -user_agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.76 "  -i https://cn-jsnt-ct-01-21.bilivideo.com/upgcxcode/02/30/1033043002/1033043002_nb3-1-16.mp4\?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=\&uipk=5\&nbs=1\&deadline=1678027957\&gen=playurlv2\&os=bcache\&oi=2015651036\&trid=0000279ff2ed8d634c00b7393d169bd3b769h\&mid=0\&platform=html5\&upsig=9a408e4dd76cf053e7240d285e8746df\&uparams=e\,uipk\,nbs\,deadline\,gen\,os\,oi\,trid\,mid\,platform\&cdnid=9929\&bvc=vod\&nettype=0\&bw=18865\&logo=80000000 -ss 47.243 -to 50.076 -q:a 0 -map a .cut_video/clip3.mp3
-echo "file 'clip3.mp3'" >>.cut_video/concat.txt
-ffmpeg -f concat -i .cut_video/concat.txt -c copy "`date "+%Y_%m_%d_%H_%M_%S"`_cut_1033043002_nb3-1-16.mp3"
-rm -rf .cut_video
-echo script_dir:/Users/c/.config/mpv/scripts
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 18.6186 -t 2.736066666667 .cut_video/clip0.mp4
+echo "file 'clip0.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 32.298933333333 -t 10.410400000000 .cut_video/clip1.mp4
+echo "file 'clip1.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 51.584866666667 -t 2.802800000000 .cut_video/clip2.mp4
+echo "file 'clip2.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 65.231833333333 -t 10.510500000000 .cut_video/clip3.mp4
+echo "file 'clip3.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 86.319566666667 -t -11.578233333334 .cut_video/clip4.mp4
+echo "file 'clip4.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 98.3983 -t 5.33866666667 .cut_video/clip5.mp4
+echo "file 'clip5.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 125.39193333333 -t 7.14046666667 .cut_video/clip6.mp4
+echo "file 'clip6.mp4'" >>.cut_video/concat.txt
+ffmpeg   -i Combination\ of\ SAR\ and\ Optical\ Sensors\ is\ future-\ Massimo\ Claudio\ Comparini\,\ CEO\,\ e-geos.mp4 -ss 139.60613333333 -t 2.90290000000 .cut_video/clip7.mp4
+echo "file 'clip7.mp4'" >>.cut_video/concat.txt
+ffmpeg -f concat -i .cut_video/concat.txt -c copy "`date "+%Y_%m_%d_%H_%M_%S"`_cut_Combination of SAR and Optical Sensors is future- Massimo Claudio Comparini, CEO, e-geos.mp4"
 echo -----ok!-----

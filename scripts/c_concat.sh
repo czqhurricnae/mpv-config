@@ -91,7 +91,7 @@ echo  "file name:$file_name, file format:$file_format"
 # done
 echo "dir_path for save_file:$dir_path"
 
-## add by likey 设置视频统一的输出路径,不然默认会放置在本地文件同目录下,(注意:Web网页请求时地址要处理,不然报错,因为传入的目录是一长串网址)
+## add by likey 设置视频统一的输出路径，不然默认会放置在本地文件同目录下，（注意：Web网页请求时地址要处理，不然报错，因为传入的目录是一长串网址）
 dir_path=$'/Users/c/Downloads/mpv-www-gen'
 
 eval cd "$sh_dir"
@@ -138,8 +138,8 @@ else
    echo "ffmpeg -f concat -i $dir_name/concat.txt -c copy \"\`$output\`_cut_$file_name\"" >>run.sh
 fi
 
-echo "rm -rf $dir_name" >>run.sh
-echo "echo script_dir:`pwd`" >>run.sh
+# echo "rm -rf $dir_name" >>run.sh
+# echo "echo script_dir:`pwd`" >>run.sh
 echo "echo -----ok!-----" >>run.sh
 chmod +x run.sh
 echo "-----run.sh has generated!-----"
